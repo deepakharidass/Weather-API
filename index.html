@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Weather Dashboard - Get current weather and 5-day forecast for any city">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Weather Dashboard</h1>
+            <p class="subtitle">Get weather updates for any city</p>
+        </header>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="cityInput" 
+                    placeholder="Search for a city..." 
+                    class="search-input"
+                    aria-label="Search for a city"
+                    autocomplete="off"
+                >
+                <button id="searchBtn" class="search-btn" aria-label="Search weather">
+                    <span class="btn-text">Search</span>
+                </button>
+            </div>
+            <div class="suggestions" id="suggestionsList" role="listbox"></div>
+        </div>
+
+        <!-- Preferences Section -->
+        <div class="preferences-section">
+            <div class="preference-group">
+                <label for="unitToggle" class="unit-label">Units:</label>
+                <select id="unitToggle" class="unit-select" aria-label="Select temperature units">
+                    <option value="metric">Celsius (°C)</option>
+                    <option value="imperial">Fahrenheit (°F)</option>
+                </select>
+            </div>
+            <div class="preference-group">
+                <label for="themeToggle" class="theme-label">Theme:</label>
+                <button id="themeToggle" class="theme-btn" aria-label="Toggle dark/light theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+            <button id="clearBtn" class="clear-btn" aria-label="Clear saved preferences">
+                Clear Preferences
+            </button>
+        </div>
+
+        <!-- Current Weather Section -->
+        <section class="current-weather-section" id="currentWeatherSection" aria-label="Current weather">
+            <div class="loading-spinner" id="loadingSpinner" role="status" aria-live="polite">
+                <div class="spinner"></div>
+                <p>Loading weather data...</p>
+            </div>
+            <div class="current-weather" id="currentWeather" style="display: none;">
+                <div class="weather-header">
+                    <h2 id="cityName"></h2>
+                    <p id="weatherDate"></p>
+                </div>
+                <div class="weather-main">
+                    <div class="weather-icon-container">
+                        <img id="weatherIcon" src="" alt="Weather condition icon" class="weather-icon">
+                    </div>
+                    <div class="weather-details">
+                        <div class="temperature">
+                            <span id="temperature"></span>
+                            <span class="unit" id="tempUnit">°C</span>
+                        </div>
+                        <p id="weatherDescription" class="description"></p>
+                    </div>
+                </div>
+                <div class="weather-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Humidity</span>
+                        <span id="humidity" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Wind Speed</span>
+                        <span id="windSpeed" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Feels Like</span>
+                        <span id="feelsLike" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Pressure</span>
+                        <span id="pressure" class="info-value"></span>
+                    </div>
+                </div>
+                <button id="addFavoriteBtn" class="add-favorite-btn" aria-label="Add city to favorites">
+                    ⭐ Add to Favorites
+                </button>
+            </div>
+        </section>
+
+        <!-- Error Message Section -->
+        <div id="errorMessage" class="error-message" role="alert" aria-live="assertive" style="display: none;"></div>
+
+        <!-- Favorites Section -->
+        <section class="favorites-section" id="favoritesSection" style="display: none;" aria-label="Favorite cities">
+            <h3>Favorite Cities</h3>
+            <div class="favorites-list" id="favoritesList"></div>
+        </section>
+
+        <!-- 5-Day Forecast Section -->
+        <section class="forecast-section" id="forecastSection" style="display: none;" aria-label="5-day weather forecast">
+            <h3>5-Day Forecast</h3>
+            <div class="forecast-container" id="forecastContainer" role="region"></div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Weather data provided by OpenWeatherMap API</p>
+            <p class="version">Version 1.0</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
